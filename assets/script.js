@@ -32,9 +32,6 @@ const config = {
   assetsPath: window.location.hostname.includes("github.io")
     ? "/portfolio/assets"
     : "../assets",
-  dataPath: window.location.hostname.includes("github.io")
-    ? "/portfolio/data"
-    : "../data",
 };
 
 const navComponent = {
@@ -42,10 +39,10 @@ const navComponent = {
     const navHtml = `
       <nav>
         <ul>
-          <li><a href="/index.html">Home</a></li>
-          <li><a href="/pages/my-approach.html">My Approach</a></li>
-          <li><a href="/pages/work.html">Work</a></li>
-          <li><a href="/pages/education.html">Education</a></li>
+          <li><a href="${config.basePath}/index.html" id="home-link">Home</a></li>
+          <li><a href="${config.basePath}/pages/my-approach.html" id="approach-link">My Approach</a></li>
+          <li><a href="${config.basePath}/pages/work.html" id="work-link">Work</a></li>
+          <li><a href="${config.basePath}/pages/education.html" id="education-link">Education</a></li>
         </ul>
         <select id="theme-toggle">
           <option value="light">Light</option>
@@ -56,8 +53,28 @@ const navComponent = {
     `;
     const navElement = document.getElementById("nav-component");
     if (navElement) navElement.innerHTML = navHtml;
+    this.setActiveLink();
+  },
+  setActiveLink() {
+    const path = window.location.pathname;
+    if (path.endsWith("/index.html") || path === `${config.basePath}/`) {
+      document.getElementById("home-link").classList.add("active");
+    } else if (path.includes("my-approach")) {
+      document.getElementById("approach-link").classList.add("active");
+    } else if (path.includes("work")) {
+      document.getElementById("work-link").classList.add("active");
+    } else if (path.includes("education")) {
+      document.getElementById("education-link").classList.add("active");
+    }
   },
 };
+
+document.addEventListener("DOMContentLoaded", () => {
+  navComponent.render();
+  footerComponent.render();
+  themeSwitcher.init();
+  dateTimeDisplay.init();
+});
 
 const footerComponent = {
   render() {

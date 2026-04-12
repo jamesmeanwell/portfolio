@@ -9,7 +9,7 @@
 
 @font-face {
   font-family: "Favorit";
-  src: url(/assets/fonts/ABC\ Favorit/ABCFavorit-Regular-Trial.otf);
+  src: url(../assets/fonts/ABC\ Favorit/ABCFavorit-Regular-Trial.otf);
   font-style: normal;
   font-weight: normal;
 }
@@ -23,21 +23,21 @@
 
 @font-face {
   font-family: "Favorit";
-  src: url(/assets/fonts/ABC\ Favorit/ABCFavorit-RegularItalic-Trial.otf);
+  src: url(../assets/fonts/ABC\ Favorit/ABCFavorit-RegularItalic-Trial.otf);
   font-style: italic;
   font-weight: normal;
 }
 
 @font-face {
   font-family: "Favorit";
-  src: url(/assets/fonts/ABC\ Favorit/ABCFavorit-Light-Trial.otf);
+  src: url(../assets/fonts/ABC\ Favorit/ABCFavorit-Light-Trial.otf);
   font-style: normal;
   font-weight: 100;
 }
 
 @font-face {
   font-family: "Favorit";
-  src: url(/assets/fonts/ABC\ Favorit/ABCFavorit-LightItalic-Trial.otf);
+  src: url(../assets/fonts/ABC\ Favorit/ABCFavorit-LightItalic-Trial.otf);
   font-style: italic;
   font-weight: 100;
 }
@@ -172,6 +172,10 @@ p {
 li {
   font-size: 1.25rem;
   margin: 0.5rem 0;
+}
+
+li a.active {
+  font-weight: bold;
 }
 
 p.font-large {
