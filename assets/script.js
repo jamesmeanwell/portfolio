@@ -1,26 +1,45 @@
-document.addEventListener("DOMContentLoaded", (event) => {
-  loadComponents();
+document.addEventListener("DOMContentLoaded", () => {
+  navComponent.render();
+  footerComponent.render();
+  themeSwitcher.init();
+  dateTimeDisplay.init();
 });
 
-// Components
-async function loadComponents() {
-  try {
-    const navHtml = await fetch("components/nav.html").then((response) =>
-      response.text()
-    );
-    const footerHtml = await fetch("components/footer.html").then((response) =>
-      response.text()
-    );
-    const navComponent = document.getElementById("nav-component");
-    const footerComponent = document.getElementById("footer-component");
-    if (navComponent) navComponent.innerHTML = navHtml;
-    if (footerComponent) footerComponent.innerHTML = footerHtml;
-    themeSwitcher.init();
-    dateTimeDisplay.init();
-  } catch (error) {
-    console.error("Error fetching components", error);
-  }
-}
+const navComponent = {
+  render() {
+    const navHtml = `
+      <nav>
+        <ul>
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/pages/practice.html">Practice</a></li>
+          <li><a href="/pages/work.html">Work</a></li>
+          <li><a href="/pages/education.html">Education</a></li>
+        </ul>
+        <select id="theme-toggle">
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+          <option value="system">OS Default</option>
+        </select>
+      </nav>
+    `;
+    const navElement = document.getElementById("nav-component");
+    if (navElement) navElement.innerHTML = navHtml;
+  },
+};
+
+const footerComponent = {
+  render() {
+    const footerHtml = `
+      <div>
+        <p id="current-time"></p>
+        <p id="current-date"></p>
+        <p>Portfolio designed and coded by James Meanwell.</p>
+      </div>
+    `;
+    const footerElement = document.getElementById("footer-component");
+    if (footerElement) footerElement.innerHTML = footerHtml;
+  },
+};
 
 // Light and Dark Mode Feature
 const themeSwitcher = {
@@ -50,11 +69,17 @@ const themeSwitcher = {
   },
   applyTheme(theme) {
     const bodyClass = document.body.classList;
+    const footerClass = document.querySelector("footer").classList;
+
     bodyClass.remove("light-theme", "dark-theme");
+    footerClass.remove("light-theme", "dark-theme");
+
     if (theme === "light") {
       bodyClass.add("light-theme");
+      footerClass.add("dark-theme"); // Invert the footer
     } else if (theme === "dark") {
       bodyClass.add("dark-theme");
+      footerClass.add("light-theme"); // Invert the footer
     } else {
       // 'system' option, respect user's system preference
       if (
@@ -62,8 +87,10 @@ const themeSwitcher = {
         window.matchMedia("(prefers-color-scheme: dark)").matches
       ) {
         bodyClass.add("dark-theme");
+        footerClass.add("light-theme"); // Invert the footer
       } else {
         bodyClass.add("light-theme");
+        footerClass.add("dark-theme"); // Invert the footer
       }
     }
   },
@@ -95,11 +122,11 @@ const dateTimeDisplay = {
     if (this.currentTimeElement && this.currentDateElement) {
       this.currentTimeElement.innerText = now.toLocaleTimeString(
         userLocale,
-        this.optionsTime
+        this.optionsTime,
       );
       this.currentDateElement.innerText = now.toLocaleDateString(
         userLocale,
-        this.optionsDate
+        this.optionsDate,
       );
     }
   },

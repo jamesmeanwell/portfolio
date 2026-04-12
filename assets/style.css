@@ -2,8 +2,8 @@
 :root {
   --color-text-light: #1353ba;
   --color-bg-light: #ffffff;
-  --color-text-dark: #76bbff;
-  --color-bg-dark: #212121;
+  --color-text-dark: #ffffff;
+  --color-bg-dark: #1353ba;
   --color-1: #d6ed2e;
 }
 
@@ -56,7 +56,7 @@
   column-gap: 1rem;
   min-height: 100svh;
   margin: 0;
-  padding: 1rem;
+  padding: 2rem;
 }
 
 /* Global: Spacing and Layout */
@@ -143,6 +143,11 @@ body {
   body {
     --color-text: var(--color-text-dark);
     --color-bg: var(--color-bg-dark);
+  }
+
+  footer {
+    background-color: var(--color-bg-light);
+    color: var(--color-text-light);
   }
 }
 
@@ -285,14 +290,22 @@ select#theme-toggle {
 /* Component: Footer */
 footer {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto;
   column-gap: 1rem;
   height: 50vh;
   margin: 0;
-  padding: 1rem;
-  background-color: var(--color-text-light);
-  color: var(--color-bg-light);
+  padding: 2rem;
+}
+
+footer.light-theme {
+  background-color: var(--color-bg-light);
+  color: var(--color-text-light);
+}
+
+footer.dark-theme {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-dark);
 }
 
 footer p {
@@ -307,7 +320,7 @@ footer p#current-time {
 
 @media (min-width: 992px) {
   footer {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     height: 40vh;
   }
 
