@@ -5,6 +5,38 @@ document.addEventListener("DOMContentLoaded", () => {
   dateTimeDisplay.init();
 });
 
+// const navComponent = {
+//   render() {
+//     const navHtml = `
+//       <nav>
+//         <ul>
+//           <li><a href="/index.html">Home</a></li>
+//           <li><a href="/pages/my-approach.html">My Approach</a></li>
+//           <li><a href="/pages/work.html">Work</a></li>
+//           <li><a href="/pages/education.html">Education</a></li>
+//         </ul>
+//         <select id="theme-toggle">
+//           <option value="light">Light</option>
+//           <option value="dark">Dark</option>
+//           <option value="system">OS Default</option>
+//         </select>
+//       </nav>
+//     `;
+//     const navElement = document.getElementById("nav-component");
+//     if (navElement) navElement.innerHTML = navHtml;
+//   },
+// };
+
+const config = {
+  basePath: window.location.hostname.includes("github.io") ? "/portfolio" : "",
+  assetsPath: window.location.hostname.includes("github.io")
+    ? "/portfolio/assets"
+    : "../assets",
+  dataPath: window.location.hostname.includes("github.io")
+    ? "/portfolio/data"
+    : "../data",
+};
+
 const navComponent = {
   render() {
     const navHtml = `
