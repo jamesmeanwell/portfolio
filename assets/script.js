@@ -11,7 +11,7 @@ const navComponent = {
       <nav>
         <ul>
           <li><a href="/index.html">Home</a></li>
-          <li><a href="/pages/practice.html">Practice</a></li>
+          <li><a href="/pages/my-approach.html">My Approach</a></li>
           <li><a href="/pages/work.html">Work</a></li>
           <li><a href="/pages/education.html">Education</a></li>
         </ul>
