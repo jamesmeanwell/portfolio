@@ -82,7 +82,7 @@ const footerComponent = {
       <div>
         <p id="current-time"></p>
         <p id="current-date"></p>
-        <p>Portfolio designed and coded by James Meanwell.</p>
+        <p>Portfolio designed and coded by James Meanwell. This work was developed with the assistance of AI tools for drafting and editing. All ideas, interpretations, and final revisions are my own unless otherwise cited.</p>
       </div>
     `;
     const footerElement = document.getElementById("footer-component");
@@ -188,3 +188,69 @@ const dateTimeDisplay = {
     }
   },
 };
+
+/* EXAMPLE CONTAINER */
+document.addEventListener("DOMContentLoaded", function () {
+  const exampleContainers = document.querySelectorAll(".example-container");
+
+  exampleContainers.forEach((container) => {
+    const exampleSelector = container.querySelector("#example-selector");
+    const nextConceptButton = container.querySelector("#example-next-concept");
+
+    const exampleManager = {
+      init() {
+        this.divs = container.querySelectorAll('div[id^="option-"]');
+        this.updateSelectOptions();
+        this.bindEvents();
+        this.showDiv();
+      },
+      updateSelectOptions() {
+        /* Create a label element */
+        const label = document.createElement("label");
+        label.textContent = "Choose an option:";
+        label.htmlFor = exampleSelector.id;
+        label.classList.add("sr-only");
+        /* Insert the label into the DOM before the select element */
+        exampleSelector.parentNode.insertBefore(label, exampleSelector);
+        this.divs.forEach((div) => {
+          const option = document.createElement("option");
+          option.value = div.id;
+          option.textContent = div.dataset.name || div.id;
+          exampleSelector.appendChild(option);
+        });
+      },
+      bindEvents() {
+        exampleSelector.addEventListener("change", this.showDiv.bind(this));
+        nextConceptButton.addEventListener(
+          "click",
+          this.nextConcept.bind(this),
+        );
+      },
+      showDiv() {
+        const selectedValue = exampleSelector.value || this.divs[0].id;
+        const exampleCount = container.querySelector(".example-count");
+        this.divs.forEach((div) => {
+          if (div.id === selectedValue) {
+            div.classList.remove("example-hidden");
+            div.classList.add("example-visible");
+          } else {
+            div.classList.add("example-hidden");
+            div.classList.remove("example-visible");
+          }
+        });
+        exampleSelector.value = selectedValue;
+        const selectedIndex = exampleSelector.selectedIndex + 1;
+        const totalOptions = exampleSelector.options.length;
+        exampleCount.textContent = `${selectedIndex} of ${totalOptions}`;
+      },
+      nextConcept() {
+        let selectedIndex = exampleSelector.selectedIndex;
+        const nextIndex = (selectedIndex + 1) % exampleSelector.options.length;
+        exampleSelector.selectedIndex = nextIndex;
+        this.showDiv();
+      },
+    };
+
+    exampleManager.init();
+  });
+});
