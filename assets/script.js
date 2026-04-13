@@ -5,28 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
   dateTimeDisplay.init();
 });
 
-// const navComponent = {
-//   render() {
-//     const navHtml = `
-//       <nav>
-//         <ul>
-//           <li><a href="/index.html">Home</a></li>
-//           <li><a href="/pages/my-approach.html">My Approach</a></li>
-//           <li><a href="/pages/work.html">Work</a></li>
-//           <li><a href="/pages/education.html">Education</a></li>
-//         </ul>
-//         <select id="theme-toggle">
-//           <option value="light">Light</option>
-//           <option value="dark">Dark</option>
-//           <option value="system">OS Default</option>
-//         </select>
-//       </nav>
-//     `;
-//     const navElement = document.getElementById("nav-component");
-//     if (navElement) navElement.innerHTML = navHtml;
-//   },
-// };
-
 const config = {
   basePath: window.location.hostname.includes("github.io") ? "/portfolio" : "",
   assetsPath: window.location.hostname.includes("github.io")
@@ -40,7 +18,7 @@ const navComponent = {
       <nav>
         <ul>
           <li><a href="${config.basePath}/index.html" id="home-link">Home</a></li>
-          <li><a href="${config.basePath}/pages/my-approach.html" id="approach-link">My Approach</a></li>
+          <li><a href="${config.basePath}/pages/approach.html" id="approach-link">Approach</a></li>
           <li><a href="${config.basePath}/pages/work.html" id="work-link">Work</a></li>
           <li><a href="${config.basePath}/pages/education.html" id="education-link">Education</a></li>
         </ul>
@@ -59,7 +37,7 @@ const navComponent = {
     const path = window.location.pathname;
     if (path.endsWith("/index.html") || path === `${config.basePath}/`) {
       document.getElementById("home-link").classList.add("active");
-    } else if (path.includes("my-approach")) {
+    } else if (path.includes("approach")) {
       document.getElementById("approach-link").classList.add("active");
     } else if (path.includes("work")) {
       document.getElementById("work-link").classList.add("active");
