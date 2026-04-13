@@ -280,7 +280,9 @@ nav ul li {
 select#theme-toggle {
   font-size: 0.75rem;
   border: none;
-  background-color: transparent;
+  background-color: var(--color-bg-light);
+  color: var(--color-text-light);
+  border-radius: 3px;
   padding: 0 0.5rem 0 0;
   cursor: pointer;
 }
