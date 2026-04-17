@@ -277,7 +277,7 @@ nav ul li {
   margin: 0;
 }
 
-select#theme-toggle {
+:is(select#theme-toggle, select#example-selector) {
   font-size: 0.75rem;
   border: none;
   background-color: var(--color-bg-light);
